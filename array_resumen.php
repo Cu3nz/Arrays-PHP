@@ -26,6 +26,36 @@
 
     <?php
 
+
+function pintarTabla(array $datos){
+    echo "<table border='3' align='center'>";
+
+/**
+ * ? se mete dentro del array grande ($datos)
+ * * se posiciona en las claves ('Andalucia' , 'Extremadura' , 'Valencia') y las almacena en $comunidad 
+ * * se posiciona en los valores de los subarray  (provAnd , provExt y provVal ) y almacena los valores en $provincia
+ */
+
+    foreach ($datos as $comunidad => $provincia) { 
+        echo "<tr>";
+        echo "<td aling='center' colspan='".count($provincia)."'>$comunidad</td>"; // muestro la comunidad pero aparte calculo el tamaño del subarray de cada comunidad para hacer el colspan
+    }
+    echo "</tr>";
+    echo "<tr>";
+    /**
+     * ? accede a los subarray (provAnd , provExt y provVal)
+     * * Almacena en la variable $nomProvincia los valores de cada subarray
+     */
+    foreach ($provincia as $nomProvincia) { // se posiciona en los subarray (provAnd para sacar los valores de los subarray)
+            
+        echo "<td>$nomProvincia</td>"; // imprime los valores de los subarray
+    }
+    echo "</tr>";
+
+
+    echo "</table>";
+}
+
     //! Creacion de arrays de diferentes maneras */
 
     $prov = ['Almeria', 'Cordoba'];
@@ -295,6 +325,9 @@
     ksort($prov);
     print_r($prov);
 
+    foreach ($total as $comunidad => $provincia) {
+        pintarTabla([$comunidad => $provincia]);
+    }
 
 
 
